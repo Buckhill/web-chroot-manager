@@ -91,9 +91,9 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 **Options:**
 
--u Account_Name - Create Primary or Secondary account together with chroot
+-u [account_name] - Create Primary or Secondary account together with chroot
 
--s Domain_Name - Creates site under chroot
+-s [domain_name] - Creates site under chroot
 
 ## 3. Install
 
@@ -101,9 +101,9 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 **Options (mandatory):**
 
--u Primary_Account
+-u [primary_account]
 
--p binaries (separated by comma , full paths have to be provided)
+-p [binaries] (separated by comma , full paths have to be provided)
 
 ## 4. Update Binaries
 
@@ -111,7 +111,7 @@ Updates binaries within a chroot.  The binary has to be specified in the Primary
 
 **Options (mandatory):**
 
--u Primary_Account
+-u [primary_account]
 
 Optionally you may specify which binaries will be updated with -p flag
 
@@ -125,7 +125,7 @@ The blueprint report provides a list of changed, missing, or new files
 
 **Options:**
 
--u Primary_Account (mandatory)
+-u [primary_account] (mandatory)
 
 -g Generates blueprint
 
@@ -133,7 +133,7 @@ The blueprint report provides a list of changed, missing, or new files
 
 After the -c path another blueprint can be specified, otherwise latest blueprint is used
 
--f [ blueprint_file ] 
+-f [blueprint_file] 
 
 A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
 

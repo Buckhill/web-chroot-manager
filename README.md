@@ -1,7 +1,7 @@
 Web Chroot Manager (WCM) 
 ==================
 
-Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It's a small easy to use application with a built in wizard which creates cnroot environments suitable for PHP-FPM.
+Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It's a small easy to use application with a built in wizard which creates chroot environments suitable for PHP-FPM.
 
 WCM supports adding additional binaries to chroot, updating of chroot with new packages, and generating and comparing blueprints of files contained inside the chroot.
 
@@ -24,7 +24,7 @@ WCM has several roles and commands:-
 - 3. Install
 - 4. Update Blueprint
 
-## 1. Wizard
+## 1. Wizard Overview
 
 The wizard is used to generate configuration files which are later used when creating chroot accounts and sites.
 
@@ -80,4 +80,78 @@ The wizard asks for:
 
 ## 2. Create
 
+Creates chroot account ( primary accoutn ), secondary account ad site.
 
+The configuration file for particular action has to exists.
+
+Options
+
+-u Account_Name  - Create primary or secondary account together with chroot.
+
+-s Domain_Name - Creates site under chroot
+
+## 2. Install
+
+Installs extra binaries into chroot and updates configuration file of primary account
+
+Options (mandatory)
+
+-u Primary_Account
+
+-p binaries  separated by , (full paths have to be provided)
+
+## 3. Update
+
+Updates binaries into chroot.  Binary has to be inprimary account configuration.
+
+Mandatory option is -u Primary_Account
+
+Optionally you can specify which binaries will be updated with -p option. If is not provided all binaries from configuration file will be updated.
+
+## 4. Update Blueprint
+
+With this role you can check files against unauthorized changes.
+
+Bleueprint report provides list of changed, missing, or new files.
+
+Options:
+
+-u [ Primary_Account_Name ] (mandatory)
+
+-g  Generates blueprint
+
+-c Compares actual state with blueprint.
+
+-f [ blueprint_file ] In addition to -c path to blueprint can be specified otherwise compares against latest
+
+The exclusion list can be defined in file "full_bp_exclusions" which has to be saved into configuration directory of the primary account.
+
+##Directory structure and configuration files
+ 
+###Main configuration file:
+
+/etc/buckhill-wcm/general.conf
+
+###Configuration file for the user generated with wizard:
+
+/etc/buckhill-wcm/accounts/[Account Name]/user.conf
+
+###Blueprint exclusions list for the user:
+
+/etc/buckhill-wcm/accounts/[Account Name]/full_bp_exclusions
+
+###Any binaries or file in this directory will be installed in chroot:
+
+/etc/buckhill-wcm/accounts/[Account Name]/custom/
+
+###Website configuration:
+
+/etc/buckhill-wcm/accounts/sites/domain_name.conf
+
+###Templates for php-fpm and Apache:
+
+/etc/buckhill-wcm/apache_vhost_template.conf
+
+/etc/buckhill-wcm/apache_php-fpm.conf
+
+/etc/buckhill-wcm/fpm_pool_template.conf

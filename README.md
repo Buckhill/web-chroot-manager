@@ -26,7 +26,8 @@ WCM has several roles and commands:-
 - 1. Wizard
 - 2. Create
 - 3. Install
-- 4. Update Blueprint
+- 4. Update Binaries
+- 5. Update Blueprint
 
 ## 1. Wizard Overview
 
@@ -94,7 +95,7 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 -s Domain_Name - Creates site under chroot
 
-## 2. Install
+## 3. Install
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
@@ -104,7 +105,7 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 -p binaries (separated by comma , full paths have to be provided)
 
-## 3. Update
+## 4. Update Binaries
 
 Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file
 
@@ -116,7 +117,7 @@ Optionally you may specify which binaries will be updated with -p flag
 
 If the flag is not provided then all binaries from the configuration file will be updated
 
-## 4. Update Blueprint
+## 5. Update Blueprint
 
 With this function you can check your files against potentially unauthorised changes
 

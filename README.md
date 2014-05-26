@@ -108,7 +108,7 @@ Options (mandatory)
 
 Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file
 
-Mandatory option:
+**Mandatory option:**
 
 -u Primary_Account
 
@@ -122,7 +122,7 @@ With this function you can check your files against potentially unauthorised cha
 
 The blueprint report provides a list of changed, missing, or new files
 
-Options:
+**Options:**
 
 -u [ Primary_Account_Name ] (mandatory)
 
@@ -136,27 +136,27 @@ A file exclusion list can be defined within "full_bp_exclusions", which has to b
 
 ##Directory structure and configuration files
  
-###Main configuration file:
+**Main configuration file:**
 
 /etc/buckhill-wcm/general.conf
 
-###Configuration file for the user generated with wizard:
+**Configuration file for the user generated with wizard:**
 
 /etc/buckhill-wcm/accounts/[Account Name]/user.conf
 
-###Blueprint exclusions list for the user:
+**Blueprint exclusions list for the user:**
 
 /etc/buckhill-wcm/accounts/[Account Name]/full_bp_exclusions
 
-###Any binaries or file in this directory will be installed in chroot:
+**Any binaries or file in this directory will be installed in chroot:**
 
 /etc/buckhill-wcm/accounts/[Account Name]/custom/
 
-###Website configuration:
+**#Website configuration:**
 
 /etc/buckhill-wcm/accounts/sites/domain_name.conf
 
-###Templates for php-fpm and Apache:
+**Templates for php-fpm and Apache:**
 
 /etc/buckhill-wcm/apache_vhost_template.conf
 

@@ -155,7 +155,7 @@ A file exclusion list can be defined within "full_bp_exclusions", which has to b
 
 /etc/buckhill-wcm/accounts/[Account Name]/custom/
 
-**#Website configuration:**
+**Website configuration:**
 
 /etc/buckhill-wcm/accounts/sites/domain_name.conf
 

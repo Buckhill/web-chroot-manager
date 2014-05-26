@@ -9,7 +9,11 @@ WCM supports adding additional binaries to chroot, updating of chroot with new p
 
 WCM has been designed for Ubuntu 12.04+ LTS.  Debian and CentOS/Redhat support are due with the next release.
 
-WCM assumes that the configuration directory is located at /etc/buckhill-wcm
+## Installation
+
+Copy the configuration files to: /etc/buckhill-wcm/* 
+
+By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.
 
 You may change the CFDIR variable in order to move the configuration directory.
 
@@ -34,7 +38,7 @@ There are three sections:
 - Secondary account
 - Site
 
-## 1. Wizard - Primary Account
+## 1.1 Wizard - Primary Account
 
 The primary account is the account under which the chroot is installed. Its UID and GID are used by PHP-FPM.
 
@@ -45,7 +49,7 @@ The wizard asks for:
 - Shell - Usually there is no reason to change this.
 - Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.
 
-## 1. Wizard - Secondary Account
+## 1.2 Wizard - Secondary Account
 
 The account for the site administrator. Access is allowed via SFTP.  It inherits the GID of the primary account.  
 Since PHP is also run under the primary account you are free to deny access to the files by changing group permissions.
@@ -66,7 +70,7 @@ Groups have to be setup on the server and the SSH server already configured, in 
 
 You may use the linux-package-installer (LPI) to install the SSH server, if required.
 
-## 1. Wizard - Site
+## 1.3 Wizard - Site
 
 This generates a configuration for an Apache vhost which uses the PHP-FPM pool configured for the Primary account. 
 The wizard requires the Primary account username.
@@ -80,51 +84,55 @@ The wizard asks for:
 
 ## 2. Create
 
-Creates chroot account ( primary accoutn ), secondary account ad site.
+Creates a chroot account (Primary account), Secondary account and site
 
-The configuration file for particular action has to exists.
+The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 Options
 
--u Account_Name  - Create primary or secondary account together with chroot.
+-u Account_Name - Create Primary or Secondary account together with chroot
 
 -s Domain_Name - Creates site under chroot
 
 ## 2. Install
 
-Installs extra binaries into chroot and updates configuration file of primary account
+Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
 Options (mandatory)
 
 -u Primary_Account
 
--p binaries  separated by , (full paths have to be provided)
+-p binaries (separated by comma , full paths have to be provided)
 
 ## 3. Update
 
-Updates binaries into chroot.  Binary has to be inprimary account configuration.
+Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file
 
-Mandatory option is -u Primary_Account
+Mandatory option:
 
-Optionally you can specify which binaries will be updated with -p option. If is not provided all binaries from configuration file will be updated.
+-u Primary_Account
+
+Optionally you may specify which binaries will be updated with -p flag
+
+If the flag is not provided then all binaries from the configuration file will be updated
 
 ## 4. Update Blueprint
 
-With this role you can check files against unauthorized changes.
+With this function you can check your files against potentially unauthorised changes
 
-Bleueprint report provides list of changed, missing, or new files.
+The blueprint report provides a list of changed, missing, or new files
 
 Options:
 
 -u [ Primary_Account_Name ] (mandatory)
 
--g  Generates blueprint
+-g Generates blueprint
 
--c Compares actual state with blueprint.
+-c Compares current state with the previous blueprint
 
--f [ blueprint_file ] In addition to -c path to blueprint can be specified otherwise compares against latest
+-f [ blueprint_file ] AFter the -c path another blueprint can be specified, otherwise latest blueprint is used
 
-The exclusion list can be defined in file "full_bp_exclusions" which has to be saved into configuration directory of the primary account.
+A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
 
 ##Directory structure and configuration files
  

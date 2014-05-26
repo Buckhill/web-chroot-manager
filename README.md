@@ -88,7 +88,7 @@ Creates a chroot account (Primary account), Secondary account and site
 
 The configuration file for each action has to exist within /etc/buckhill-wcm/
 
-Options
+**Options**
 
 -u Account_Name - Create Primary or Secondary account together with chroot
 
@@ -98,7 +98,7 @@ Options
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
-Options (mandatory)
+**Options (mandatory)**
 
 -u Primary_Account
 
@@ -124,7 +124,7 @@ The blueprint report provides a list of changed, missing, or new files
 
 **Options:**
 
--u [ Primary_Account_Name ] (mandatory)
+-u [ Primary Account Name ] (mandatory)
 
 -g Generates blueprint
 

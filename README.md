@@ -124,7 +124,7 @@ The blueprint report provides a list of changed, missing, or new files
 
 **Options:**
 
--u [ Primary Account Name ] (mandatory)
+-u [ Primary account username ] (mandatory)
 
 -g Generates blueprint
 

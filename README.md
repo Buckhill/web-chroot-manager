@@ -5,11 +5,11 @@ Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It
 
 WCM supports adding additional binaries to chroot, updating of chroot with new packages, and generating and comparing blueprints of files contained inside the chroot.
 
-## Limitations
+### Limitations
 
 WCM has been designed for Ubuntu 12.04+ LTS.  Debian and CentOS/Redhat support are due with the next release.
 
-## Installation
+### Installation
 
 Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your preferred location.
 
@@ -17,7 +17,7 @@ By default, WCM assumes that the configuration directory is located at /etc/buck
 
 You may change the CFDIR variable in order to move the configuration directory.
 
-## How to use WCM
+### How to use WCM
 
 Note: Starting WCM without any arguments specified will print help text detailing a list of roles and available options.
 
@@ -29,7 +29,7 @@ WCM has several roles and commands:-
 	4. Update Binaries
 	5. Update Blueprint
 
-## 1. Wizard Overview
+### 1. Wizard Overview
 
 The wizard is used to generate configuration files which are later used when creating chroot accounts and sites.
 
@@ -39,7 +39,7 @@ There are three sections:
 	- Secondary account
 	- Site
 
-## 1.1 Wizard - Primary Account
+### 1.1 Wizard - Primary Account
 
 The primary account is the account under which the chroot is installed. Its UID and GID are used by PHP-FPM.
 
@@ -50,7 +50,7 @@ The wizard asks for:
 - Shell - Usually there is no reason to change this.
 - Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.
 
-## 1.2 Wizard - Secondary Account
+### 1.2 Wizard - Secondary Account
 
 The account for the site administrator. Access is allowed via SFTP.  It inherits the GID of the primary account.  
 Since PHP is also run under the primary account you are free to deny access to the files by changing group permissions.
@@ -71,7 +71,7 @@ Groups have to be setup on the server and the SSH server already configured, in 
 
 You may use the linux-package-installer (LPI) to install the SSH server, if required.
 
-## 1.3 Wizard - Site
+### 1.3 Wizard - Site
 
 This generates a configuration for an Apache vhost which uses the PHP-FPM pool configured for the Primary account. 
 The wizard requires the Primary account username.
@@ -83,7 +83,7 @@ The wizard asks for:
 - Listen socket (exp. 1.2.3.4:80) or leave * if you unsure
 - Vhost alias for the domain
 
-## 2. Create
+### 2. Create
 
 Creates a chroot account (Primary account), Secondary account and site
 
@@ -95,7 +95,7 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 -s [domain_name] - Creates site under chroot
 
-## 3. Install
+### 3. Install
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
@@ -105,7 +105,7 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 -p [binary list] separated by comma , full paths have to be provided
 
-## 4. Update Binaries
+### 4. Update Binaries
 
 Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file
 
@@ -117,7 +117,7 @@ Optionally you may specify which binaries will be updated with -p flag
 
 If the flag is not provided then all binaries from the configuration file will be updated
 
-## 5. Update Blueprint
+### 5. Update Blueprint
 
 With this function you can check your files against potentially unauthorised changes
 
@@ -137,7 +137,7 @@ After the -c path another blueprint can be specified, otherwise latest blueprint
 
 A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
 
-##Directory structure and configuration files
+### Directory structure and configuration files
  
 **Main configuration file:**
 

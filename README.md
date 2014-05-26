@@ -103,7 +103,7 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 -u [primary_account]
 
--p [binaries] (separated by comma , full paths have to be provided)
+-p [binary list] separated by comma , full paths have to be provided
 
 ## 4. Update Binaries
 
@@ -125,7 +125,7 @@ The blueprint report provides a list of changed, missing, or new files
 
 **Options:**
 
--u [primary_account] (mandatory)
+-u [primary_account] **mandatory**
 
 -g Generates blueprint
 

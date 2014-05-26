@@ -35,9 +35,9 @@ The wizard is used to generate configuration files which are later used when cre
 
 There are three sections:
 
-- Primary account
-- Secondary account
-- Site
+	- Primary account
+	- Secondary account
+	- Site
 
 ## 1.1 Wizard - Primary Account
 

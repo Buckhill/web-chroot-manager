@@ -11,7 +11,7 @@ WCM has been designed for Ubuntu 12.04+ LTS.  Debian and CentOS/Redhat support a
 
 ## Installation
 
-Copy the configuration files to: /etc/buckhill-wcm/* 
+Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your preferred location.
 
 By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.
 

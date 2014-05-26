@@ -23,11 +23,11 @@ Note: Starting WCM without any arguments specified will print help text detailin
 
 WCM has several roles and commands:-
 
-- 1. Wizard
-- 2. Create
-- 3. Install
-- 4. Update Binaries
-- 5. Update Blueprint
+	1. Wizard
+	2. Create
+	3. Install
+	4. Update Binaries
+	5. Update Blueprint
 
 ## 1. Wizard Overview
 

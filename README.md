@@ -89,7 +89,7 @@ Creates a chroot account (Primary account), Secondary account and site
 
 The configuration file for each action has to exist within /etc/buckhill-wcm/
 
-**Options**
+**Options:**
 
 -u Account_Name - Create Primary or Secondary account together with chroot
 
@@ -99,7 +99,7 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
-**Options (mandatory)**
+**Options (mandatory):**
 
 -u Primary_Account
 
@@ -109,7 +109,7 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file
 
-**Mandatory option:**
+**Options (mandatory):**
 
 -u Primary_Account
 
@@ -125,13 +125,15 @@ The blueprint report provides a list of changed, missing, or new files
 
 **Options:**
 
--u [ Primary account username ] (mandatory)
+-u Primary_Account (mandatory)
 
 -g Generates blueprint
 
--c Compares current state with the previous blueprint
+-c Compares current state with the previous blueprint.  
 
--f [ blueprint_file ] AFter the -c path another blueprint can be specified, otherwise latest blueprint is used
+After the -c path another blueprint can be specified, otherwise latest blueprint is used
+
+-f [ blueprint_file ] 
 
 A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
 

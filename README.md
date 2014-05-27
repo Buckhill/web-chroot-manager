@@ -25,9 +25,9 @@ WCM has several roles and commands:-
 
 	1. Wizard
 	2. Create
-	3. Install
+	3. Install Binaries
 	4. Update Binaries
-	5. Update Blueprint
+	5. Binary Blueprint Manager
 
 ### 1. Wizard Overview
 
@@ -57,7 +57,7 @@ Since PHP is also run under the primary account you are free to deny access to t
 
 The wizard asks for:
 
-- Username
+- Username - it is good practice to use short usernames
 - Username of parent (Primary Account) under which it will be created
 - Shell - Usually there is no reason to change this.
 - Email address - Required for other scripts, such as the WordPress Installer (LPI for Wordpress)
@@ -69,7 +69,7 @@ Groups are defined in /etc/buckhill-wcm/general.conf under PRIMARY_GROUP and SEC
 
 Groups have to be setup on the server and the SSH server already configured, in order for the SSH access policy to work. 
 
-You may use the linux-package-installer (LPI) to install the SSH server, if required.
+You may use the linux-package-installer (LPI) to configure the SSH server, if required.
 
 ### 1.3 Wizard - Site
 
@@ -95,7 +95,7 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 
 -s [domain_name] - Creates site under chroot
 
-### 3. Install
+### 3. Install Binaries
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
@@ -117,7 +117,7 @@ Optionally you may specify which binaries will be updated with -p flag
 
 If the flag is not provided then all binaries from the configuration file will be updated
 
-### 5. Update Blueprint
+### 5. Binary Blueprint Manager
 
 With this function you can check your files against potentially unauthorised changes
 
@@ -147,9 +147,13 @@ A file exclusion list can be defined within "full_bp_exclusions", which has to b
 
 /etc/buckhill-wcm/accounts/[Account Name]/user.conf
 
-**Blueprint exclusions list for the user:**
+**Binary blueprint exclusions list for the user:**
 
 /etc/buckhill-wcm/accounts/[Account Name]/full_bp_exclusions
+
+**Binary blueprint files for the user:**
+
+/etc/buckhill-wcm/accounts/[Username]/blueprints 
 
 **Any binaries or file in this directory will be installed in chroot:**
 

@@ -144,6 +144,8 @@ A file exclusion list can be defined within "full_bp_exclusions", which has to b
 
 /etc/buckhill-wcm/accounts/[Account Name]/full_bp_exclusions
 
+The Linux Grep utility is used for matching patterns within this file, therefore the file format should be understandable to grep. For further informations check the grep documentation, specifically under "option -f"
+
 **Binary blueprint files for the user:**
 
 /etc/buckhill-wcm/accounts/[Username]/blueprints 

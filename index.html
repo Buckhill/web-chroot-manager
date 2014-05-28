@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Web Chroot Manager : Web Chroot Manager (WCM) - chroot made easy.  It&#39;s a small, easy to use application with a built in wizard" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Web Chroot Manager</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Buckhill/web-chroot-manager">View on GitHub</a>
+
+          <h1 id="project_title">Web Chroot Manager</h1>
+          <h2 id="project_tagline">Web Chroot Manager (WCM) - chroot made easy.  It&#39;s a small, easy to use application with a built in wizard</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Buckhill/web-chroot-manager/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Buckhill/web-chroot-manager/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="web-chroot-manager-wcm-" class="anchor" href="#web-chroot-manager-wcm-"><span class="octicon octicon-link"></span></a>Web Chroot Manager (WCM) </h1>
+
+<p>Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It's a small easy to use application with a built in wizard which creates chroot environments suitable for PHP-FPM.</p>
+
+<p>WCM supports adding additional binaries to chroot, updating of chroot with new packages, and generating and comparing blueprints of files contained inside the chroot.</p>
+
+<h3>
+<a name="limitations" class="anchor" href="#limitations"><span class="octicon octicon-link"></span></a>Limitations</h3>
+
+<p>WCM has been designed for Ubuntu 12.04+ LTS.  Debian and CentOS/Redhat support are due with the next release.</p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your preferred location.</p>
+
+<p>By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.</p>
+
+<p>You may change the CFGDIR variable in order to move the configuration directory.</p>
+
+<h3>
+<a name="wcm-workflow" class="anchor" href="#wcm-workflow"><span class="octicon octicon-link"></span></a>WCM Workflow</h3>
+
+<pre><code>1. Use wizard to generate primary and secondary user(s) configuration
+2. Use wizard to generate site(s) configuration
+3. Or, edit template file(s) manually
+4. Create user account(s) and site(s) using create command
+5. After site is completely deployed, generate blueprints as required 
+</code></pre>
+
+<h3>
+<a name="how-to-use-wcm" class="anchor" href="#how-to-use-wcm"><span class="octicon octicon-link"></span></a>How to use WCM</h3>
+
+<p>Note: Starting WCM without any arguments specified will print help text detailing a list of roles and available options.</p>
+
+<p>WCM has several roles and commands:-</p>
+
+<pre><code>1. Wizard
+2. Create
+3. Install Extra Binaries
+4. Update Binaries
+5. Binary Blueprint Manager
+</code></pre>
+
+<h3>
+<a name="1-wizard-overview" class="anchor" href="#1-wizard-overview"><span class="octicon octicon-link"></span></a>1. Wizard Overview</h3>
+
+<p>The wizard is used to generate configuration files which are later used when creating chroot accounts and sites.</p>
+
+<p>There are three sections:</p>
+
+<pre><code>- Primary account
+- Secondary account
+- Site
+</code></pre>
+
+<p>To run, type: ./web-chroot-manager.sh wizard</p>
+
+<h3>
+<a name="11-wizard---primary-account" class="anchor" href="#11-wizard---primary-account"><span class="octicon octicon-link"></span></a>1.1 Wizard - Primary Account</h3>
+
+<p>The primary account is the account under which the chroot is installed. Its UID and GID are used by PHP-FPM.</p>
+
+<p>The wizard asks for:</p>
+
+<ul>
+<li>Username - it is good practice to use short usernames</li>
+<li>DNS server - Chroot will use its own resolver settings. You can use the default server settings or those from a provider.</li>
+<li>Shell - Usually there is no reason to change this.</li>
+<li>Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.</li>
+</ul><p>To run, type: ./web-chroot-manager.sh wizard</p>
+
+<h3>
+<a name="12-wizard---secondary-account" class="anchor" href="#12-wizard---secondary-account"><span class="octicon octicon-link"></span></a>1.2 Wizard - Secondary Account</h3>
+
+<p>The account for the site administrator. Access is allowed via SFTP.  It inherits the GID of the primary account.<br>
+Since PHP is also run under the primary account you are free to deny access to the files by changing group permissions.</p>
+
+<p>The wizard asks for:</p>
+
+<ul>
+<li>Username - it is good practice to use short usernames</li>
+<li>Username of parent (Primary Account) under which it will be created</li>
+<li>Shell - Usually there is no reason to change this.</li>
+<li>Email address - Required for other scripts, such as the WordPress Installer (LPI for Wordpress)</li>
+</ul><p>The Primary and Secondary account will be automatically added to primary and secondary groups, which are used 
+for SSH access policy enforcing. </p>
+
+<p>Groups are defined in /etc/buckhill-wcm/general.conf under PRIMARY_GROUP and SECONDARY_GROUP variables.</p>
+
+<p>Groups have to be setup on the server and the SSH server already configured, in order for the SSH access policy to work. </p>
+
+<p>You may use the linux-package-installer (LPI) to configure the SSH server, if required.</p>
+
+<p>To run, type: ./web-chroot-manager.sh wizard</p>
+
+<h3>
+<a name="13-wizard---site" class="anchor" href="#13-wizard---site"><span class="octicon octicon-link"></span></a>1.3 Wizard - Site</h3>
+
+<p>This generates a configuration for an Apache vhost which uses the PHP-FPM pool configured for the Primary account. 
+The wizard requires the Primary account username.</p>
+
+<p>The wizard asks for:</p>
+
+<ul>
+<li>Domain name</li>
+<li>Primary account username</li>
+<li>Listen socket (exp. 1.2.3.4:80) or leave * if you unsure</li>
+<li>Vhost alias for the domain</li>
+</ul><p>To run, type: ./web-chroot-manager.sh wizard</p>
+
+<h3>
+<a name="2-create" class="anchor" href="#2-create"><span class="octicon octicon-link"></span></a>2. Create</h3>
+
+<p>Creates a chroot account (Primary account), Secondary account and site</p>
+
+<p>The configuration file for each action has to exist within /etc/buckhill-wcm/</p>
+
+<p><strong>Options:</strong></p>
+
+<ul>
+<li>-u [account_name] - Create Primary or Secondary account together with chroot</li>
+<li>-s [domain_name] - Creates site under chroot</li>
+</ul><p>To create chroot user, type: ./web-chroot-manager.sh create -u testuser</p>
+
+<p>To create site under chroot user, type: ./web-chroot-manager.sh create -s testdomain.com</p>
+
+<h3>
+<a name="3-install-extra-binaries" class="anchor" href="#3-install-extra-binaries"><span class="octicon octicon-link"></span></a>3. Install Extra Binaries</h3>
+
+<p>Installs extra binaries into the chroot and updates the configuration file of the Primary account</p>
+
+<p><strong>Options (mandatory):</strong></p>
+
+<ul>
+<li>-u [primary_account]</li>
+<li>-p [binary list] separated by comma , full paths have to be provided</li>
+</ul><p>To run, type: ./web-chroot-manager.sh install -u testuser -p wget,ntp,nano </p>
+
+<h3>
+<a name="4-update-binaries" class="anchor" href="#4-update-binaries"><span class="octicon octicon-link"></span></a>4. Update Binaries</h3>
+
+<p>Updates binaries within a chroot.  The binary has to be specified in the Primary account configuration file</p>
+
+<p><strong>Options (mandatory):</strong></p>
+
+<ul>
+<li>-u [primary_account]</li>
+</ul><p>Optionally you may specify which binaries will be updated with -p flag</p>
+
+<p>If the flag is not provided then all binaries from the configuration file will be updated</p>
+
+<p>To update all binaries, type: ./web-chroot-manager.sh update -u testuser</p>
+
+<p>To update specific binaries, type: ./web-chroot-manager.sh update -u testuser -p wget,ntp,nano</p>
+
+<h3>
+<a name="5-binary-blueprint-manager" class="anchor" href="#5-binary-blueprint-manager"><span class="octicon octicon-link"></span></a>5. Binary Blueprint Manager</h3>
+
+<p>With this function you can check your files against potentially unauthorised changes</p>
+
+<p>The blueprint report provides a list of changed, missing, or new files</p>
+
+<p><strong>Options:</strong></p>
+
+<ul>
+<li>-u [primary_account] <strong>mandatory</strong>
+</li>
+<li>-g Generates blueprint</li>
+<li>-c Compares current state with the previous blueprint. After the -c path another blueprint can be specified, otherwise latest blueprint is used</li>
+<li>-f [blueprint_file] </li>
+</ul><p>A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.</p>
+
+<p>To run, type: ./web-chroot-manager.sh blueprint -u testuser -g</p>
+
+<p>To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c</p>
+
+<p>To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile</p>
+
+<h3>
+<a name="directory-structure-and-configuration-files" class="anchor" href="#directory-structure-and-configuration-files"><span class="octicon octicon-link"></span></a>Directory structure and configuration files</h3>
+
+<p><strong>Main configuration file:</strong></p>
+
+<p>/etc/buckhill-wcm/general.conf</p>
+
+<p><strong>Configuration file for the user generated with wizard:</strong></p>
+
+<p>/etc/buckhill-wcm/accounts/[Account Name]/user.conf</p>
+
+<p><strong>Binary blueprint exclusions list for the user:</strong></p>
+
+<p>/etc/buckhill-wcm/accounts/[Account Name]/full_bp_exclusions</p>
+
+<p>The Linux Grep utility is used for matching patterns within this file, therefore the file format should be understandable to grep. For further informations check the grep documentation, specifically under "option -f"</p>
+
+<p><strong>Binary blueprint files for the user:</strong></p>
+
+<p>/etc/buckhill-wcm/accounts/[Username]/blueprints </p>
+
+<p><strong>Any binaries or file in this directory will be installed in chroot:</strong></p>
+
+<p>/etc/buckhill-wcm/accounts/[Account Name]/custom/</p>
+
+<p><strong>Website configuration:</strong></p>
+
+<p>/etc/buckhill-wcm/accounts/sites/domain_name.conf</p>
+
+<p><strong>Templates for php-fpm and Apache:</strong></p>
+
+<p>/etc/buckhill-wcm/apache_vhost_template.conf</p>
+
+<p>/etc/buckhill-wcm/apache_php-fpm.conf</p>
+
+<p>/etc/buckhill-wcm/fpm_pool_template.conf</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Web Chroot Manager maintained by <a href="https://github.com/Buckhill">Buckhill</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-46210494-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>

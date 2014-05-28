@@ -17,6 +17,14 @@ By default, WCM assumes that the configuration directory is located at /etc/buck
 
 You may change the CFDIR variable in order to move the configuration directory.
 
+### WCM Workflow
+
+	1. Use wizard to generate primary and secondary user(s) configuration
+	2. Use wizard to geberate site(s) configuration
+	3. Or, edit template file(s) manually
+	4. Create user account(s) and site(s) using create command
+	5. After site is completely deployed, generate blueprints as required 
+
 ### How to use WCM
 
 Note: Starting WCM without any arguments specified will print help text detailing a list of roles and available options.
@@ -25,7 +33,7 @@ WCM has several roles and commands:-
 
 	1. Wizard
 	2. Create
-	3. Install Binaries
+	3. Install Extra Binaries
 	4. Update Binaries
 	5. Binary Blueprint Manager
 
@@ -39,6 +47,8 @@ There are three sections:
 	- Secondary account
 	- Site
 
+To run, type: ./web-chroot-manager.sh wizard
+
 ### 1.1 Wizard - Primary Account
 
 The primary account is the account under which the chroot is installed. Its UID and GID are used by PHP-FPM.
@@ -49,6 +59,8 @@ The wizard asks for:
 - DNS server - Chroot will use its own resolver settings. You can use the default server settings or those from a provider.
 - Shell - Usually there is no reason to change this.
 - Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.
+
+To run, type: ./web-chroot-manager.sh wizard
 
 ### 1.2 Wizard - Secondary Account
 
@@ -71,6 +83,8 @@ Groups have to be setup on the server and the SSH server already configured, in 
 
 You may use the linux-package-installer (LPI) to configure the SSH server, if required.
 
+To run, type: ./web-chroot-manager.sh wizard
+
 ### 1.3 Wizard - Site
 
 This generates a configuration for an Apache vhost which uses the PHP-FPM pool configured for the Primary account. 
@@ -83,6 +97,8 @@ The wizard asks for:
 - Listen socket (exp. 1.2.3.4:80) or leave * if you unsure
 - Vhost alias for the domain
 
+To run, type: ./web-chroot-manager.sh wizard
+
 ### 2. Create
 
 Creates a chroot account (Primary account), Secondary account and site
@@ -94,7 +110,11 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 - -u [account_name] - Create Primary or Secondary account together with chroot
 - -s [domain_name] - Creates site under chroot
 
-### 3. Install Binaries
+To create chroot user, type: ./web-chroot-manager.sh create -u testuser
+
+To create site under chroot user, type: ./web-chroot-manager.sh create -s testdomain.com
+
+### 3. Install Extra Binaries
 
 Installs extra binaries into the chroot and updates the configuration file of the Primary account
 
@@ -102,6 +122,8 @@ Installs extra binaries into the chroot and updates the configuration file of th
 
 - -u [primary_account]
 - -p [binary list] separated by comma , full paths have to be provided
+
+To run, type: ./web-chroot-manager.sh install -u testuser -p wget,ntp,nano 
 
 ### 4. Update Binaries
 
@@ -114,6 +136,10 @@ Updates binaries within a chroot.  The binary has to be specified in the Primary
 Optionally you may specify which binaries will be updated with -p flag
 
 If the flag is not provided then all binaries from the configuration file will be updated
+
+To update all binaries, type: ./web-chroot-manager.sh update -u testuser
+
+To update specific binaries, type: ./web-chroot-manager.sh update -u testuser -p wget,ntp,nano
 
 ### 5. Binary Blueprint Manager
 
@@ -129,6 +155,12 @@ The blueprint report provides a list of changed, missing, or new files
 - -f [blueprint_file] 
 
 A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
+
+To run, type: ./web-chroot-manager.sh blueprint -u testuser -g
+
+To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c
+
+To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile
 
 ### Directory structure and configuration files
  

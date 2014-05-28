@@ -1,4 +1,13 @@
 #!/bin/bash
+
+#Author: Marko Bencek
+#email: marko@buckhill.co.uk
+#Date 04/17/2014
+#Copyright Buckhill Ltd 2014
+#Website www.buckhill.co.uk
+#GitHub: https://github.com/Buckhill/web-chroot-manager
+#License GPLv3
+
 CFGDIR=/etc/buckhill-wcm
 TS=`date +%s`
 

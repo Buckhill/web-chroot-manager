@@ -15,7 +15,7 @@ Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your 
 
 By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.
 
-You may change the CFDIR variable in order to move the configuration directory.
+You may change the CFGDIR variable in order to move the configuration directory.
 
 ### WCM Workflow
 

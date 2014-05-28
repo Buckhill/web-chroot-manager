@@ -20,7 +20,7 @@ You may change the CFDIR variable in order to move the configuration directory.
 ### WCM Workflow
 
 	1. Use wizard to generate primary and secondary user(s) configuration
-	2. Use wizard to geberate site(s) configuration
+	2. Use wizard to generate site(s) configuration
 	3. Or, edit template file(s) manually
 	4. Create user account(s) and site(s) using create command
 	5. After site is completely deployed, generate blueprints as required 

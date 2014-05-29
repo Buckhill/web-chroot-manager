@@ -1,6 +1,11 @@
 Web Chroot Manager (WCM) 
 ==================
 
+Revision History
+
+	0.1 - First release
+	0.2 - Installer script added, readme updated
+
 Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It's a small easy to use application with a built in wizard which creates chroot environments suitable for PHP-FPM.
 
 WCM supports adding additional binaries to chroot, updating of chroot with new packages, and generating and comparing blueprints of files contained inside the chroot.

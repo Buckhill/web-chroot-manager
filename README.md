@@ -1,7 +1,7 @@
 Web Chroot Manager (WCM) 
 ==================
 
-Revision History
+**Revision History**
 
 	0.1 - First release
 	0.2 - Installer script added, readme updated

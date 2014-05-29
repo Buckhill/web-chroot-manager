@@ -34,6 +34,12 @@
         <h1>
 <a name="web-chroot-manager-wcm-" class="anchor" href="#web-chroot-manager-wcm-"><span class="octicon octicon-link"></span></a>Web Chroot Manager (WCM) </h1>
 
+<p><strong>Revision History</strong></p>
+
+<pre><code>0.1 - First release
+0.2 - Installer script added, readme updated
+</code></pre>
+
 <p>Web Chroot Manager (WCM) aims to simplify the management of chroot in Linux.  It's a small easy to use application with a built in wizard which creates chroot environments suitable for PHP-FPM.</p>
 
 <p>WCM supports adding additional binaries to chroot, updating of chroot with new packages, and generating and comparing blueprints of files contained inside the chroot.</p>
@@ -46,7 +52,7 @@
 <h3>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
 
-<p>Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your preferred location.</p>
+<p>Run ./install.sh script </p>
 
 <p>By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.</p>
 
@@ -88,7 +94,7 @@
 - Site
 </code></pre>
 
-<p>To run, type: ./web-chroot-manager.sh wizard</p>
+<p>To run, type: web-chroot-manager.sh wizard</p>
 
 <h3>
 <a name="11-wizard---primary-account" class="anchor" href="#11-wizard---primary-account"><span class="octicon octicon-link"></span></a>1.1 Wizard - Primary Account</h3>
@@ -102,7 +108,7 @@
 <li>DNS server - Chroot will use its own resolver settings. You can use the default server settings or those from a provider.</li>
 <li>Shell - Usually there is no reason to change this.</li>
 <li>Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.</li>
-</ul><p>To run, type: ./web-chroot-manager.sh wizard</p>
+</ul><p>To run, type: web-chroot-manager.sh wizard</p>
 
 <h3>
 <a name="12-wizard---secondary-account" class="anchor" href="#12-wizard---secondary-account"><span class="octicon octicon-link"></span></a>1.2 Wizard - Secondary Account</h3>
@@ -126,7 +132,7 @@ for SSH access policy enforcing. </p>
 
 <p>You may use the linux-package-installer (LPI) to configure the SSH server, if required.</p>
 
-<p>To run, type: ./web-chroot-manager.sh wizard</p>
+<p>To run, type: web-chroot-manager.sh wizard</p>
 
 <h3>
 <a name="13-wizard---site" class="anchor" href="#13-wizard---site"><span class="octicon octicon-link"></span></a>1.3 Wizard - Site</h3>
@@ -141,7 +147,7 @@ The wizard requires the Primary account username.</p>
 <li>Primary account username</li>
 <li>Listen socket (exp. 1.2.3.4:80) or leave * if you unsure</li>
 <li>Vhost alias for the domain</li>
-</ul><p>To run, type: ./web-chroot-manager.sh wizard</p>
+</ul><p>To run, type: web-chroot-manager.sh wizard</p>
 
 <h3>
 <a name="2-create" class="anchor" href="#2-create"><span class="octicon octicon-link"></span></a>2. Create</h3>
@@ -155,9 +161,9 @@ The wizard requires the Primary account username.</p>
 <ul>
 <li>-u [account_name] - Create Primary or Secondary account together with chroot</li>
 <li>-s [domain_name] - Creates site under chroot</li>
-</ul><p>To create chroot user, type: ./web-chroot-manager.sh create -u testuser</p>
+</ul><p>To create chroot user, type: web-chroot-manager.sh create -u testuser</p>
 
-<p>To create site under chroot user, type: ./web-chroot-manager.sh create -s testdomain.com</p>
+<p>To create site under chroot user, type: web-chroot-manager.sh create -s testdomain.com</p>
 
 <h3>
 <a name="3-install-extra-binaries" class="anchor" href="#3-install-extra-binaries"><span class="octicon octicon-link"></span></a>3. Install Extra Binaries</h3>
@@ -169,7 +175,7 @@ The wizard requires the Primary account username.</p>
 <ul>
 <li>-u [primary_account]</li>
 <li>-p [binary list] separated by comma , full paths have to be provided</li>
-</ul><p>To run, type: ./web-chroot-manager.sh install -u testuser -p wget,ntp,nano </p>
+</ul><p>To run, type: web-chroot-manager.sh install -u testuser -p wget,ntp,nano </p>
 
 <h3>
 <a name="4-update-binaries" class="anchor" href="#4-update-binaries"><span class="octicon octicon-link"></span></a>4. Update Binaries</h3>
@@ -184,9 +190,9 @@ The wizard requires the Primary account username.</p>
 
 <p>If the flag is not provided then all binaries from the configuration file will be updated</p>
 
-<p>To update all binaries, type: ./web-chroot-manager.sh update -u testuser</p>
+<p>To update all binaries, type: web-chroot-manager.sh update -u testuser</p>
 
-<p>To update specific binaries, type: ./web-chroot-manager.sh update -u testuser -p wget,ntp,nano</p>
+<p>To update specific binaries, type: web-chroot-manager.sh update -u testuser -p wget,ntp,nano</p>
 
 <h3>
 <a name="5-binary-blueprint-manager" class="anchor" href="#5-binary-blueprint-manager"><span class="octicon octicon-link"></span></a>5. Binary Blueprint Manager</h3>
@@ -205,11 +211,11 @@ The wizard requires the Primary account username.</p>
 <li>-f [blueprint_file] </li>
 </ul><p>A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.</p>
 
-<p>To run, type: ./web-chroot-manager.sh blueprint -u testuser -g</p>
+<p>To run, type: web-chroot-manager.sh blueprint -u testuser -g</p>
 
-<p>To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c</p>
+<p>To compare against previous state, type: web-chroot-manager.sh blueprint -u testuser -c</p>
 
-<p>To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile</p>
+<p>To compare against previous state, type: web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile</p>
 
 <h3>
 <a name="directory-structure-and-configuration-files" class="anchor" href="#directory-structure-and-configuration-files"><span class="octicon octicon-link"></span></a>Directory structure and configuration files</h3>

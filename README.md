@@ -11,7 +11,7 @@ WCM has been designed for Ubuntu 12.04+ LTS.  Debian and CentOS/Redhat support a
 
 ### Installation
 
-Copy the configuration files to: /etc/buckhill-wcm/* and the shell file to your preferred location.
+Run ./install.sh script 
 
 By default, WCM assumes that the configuration directory is located at /etc/buckhill-wcm.
 
@@ -47,7 +47,7 @@ There are three sections:
 	- Secondary account
 	- Site
 
-To run, type: ./web-chroot-manager.sh wizard
+To run, type: web-chroot-manager.sh wizard
 
 ### 1.1 Wizard - Primary Account
 
@@ -60,7 +60,7 @@ The wizard asks for:
 - Shell - Usually there is no reason to change this.
 - Extra binaries which will be installed under chroot. The binaries have to exists on the server.  Full path has to be provided and they have to be separated with a space.
 
-To run, type: ./web-chroot-manager.sh wizard
+To run, type: web-chroot-manager.sh wizard
 
 ### 1.2 Wizard - Secondary Account
 
@@ -83,7 +83,7 @@ Groups have to be setup on the server and the SSH server already configured, in 
 
 You may use the linux-package-installer (LPI) to configure the SSH server, if required.
 
-To run, type: ./web-chroot-manager.sh wizard
+To run, type: web-chroot-manager.sh wizard
 
 ### 1.3 Wizard - Site
 
@@ -97,7 +97,7 @@ The wizard asks for:
 - Listen socket (exp. 1.2.3.4:80) or leave * if you unsure
 - Vhost alias for the domain
 
-To run, type: ./web-chroot-manager.sh wizard
+To run, type: web-chroot-manager.sh wizard
 
 ### 2. Create
 
@@ -110,9 +110,9 @@ The configuration file for each action has to exist within /etc/buckhill-wcm/
 - -u [account_name] - Create Primary or Secondary account together with chroot
 - -s [domain_name] - Creates site under chroot
 
-To create chroot user, type: ./web-chroot-manager.sh create -u testuser
+To create chroot user, type: web-chroot-manager.sh create -u testuser
 
-To create site under chroot user, type: ./web-chroot-manager.sh create -s testdomain.com
+To create site under chroot user, type: web-chroot-manager.sh create -s testdomain.com
 
 ### 3. Install Extra Binaries
 
@@ -123,7 +123,7 @@ Installs extra binaries into the chroot and updates the configuration file of th
 - -u [primary_account]
 - -p [binary list] separated by comma , full paths have to be provided
 
-To run, type: ./web-chroot-manager.sh install -u testuser -p wget,ntp,nano 
+To run, type: web-chroot-manager.sh install -u testuser -p wget,ntp,nano 
 
 ### 4. Update Binaries
 
@@ -137,9 +137,9 @@ Optionally you may specify which binaries will be updated with -p flag
 
 If the flag is not provided then all binaries from the configuration file will be updated
 
-To update all binaries, type: ./web-chroot-manager.sh update -u testuser
+To update all binaries, type: web-chroot-manager.sh update -u testuser
 
-To update specific binaries, type: ./web-chroot-manager.sh update -u testuser -p wget,ntp,nano
+To update specific binaries, type: web-chroot-manager.sh update -u testuser -p wget,ntp,nano
 
 ### 5. Binary Blueprint Manager
 
@@ -156,11 +156,11 @@ The blueprint report provides a list of changed, missing, or new files
 
 A file exclusion list can be defined within "full_bp_exclusions", which has to be saved into the configuration directory of the primary account.
 
-To run, type: ./web-chroot-manager.sh blueprint -u testuser -g
+To run, type: web-chroot-manager.sh blueprint -u testuser -g
 
-To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c
+To compare against previous state, type: web-chroot-manager.sh blueprint -u testuser -c
 
-To compare against previous state, type: ./web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile
+To compare against previous state, type: web-chroot-manager.sh blueprint -u testuser -c -f /path/to/blueprintfile
 
 ### Directory structure and configuration files
  
